@@ -20,7 +20,7 @@ public class Knife4jConfiguration {
                 .apiInfo(new ApiInfoBuilder()
                         .title("网站-API文档")
                         .description("# swagger-bootstrap-ui-demo RESTful APIs")
-                        .termsOfServiceUrl("http://www.xx.com/")
+                        .termsOfServiceUrl("http://www.xx.org/")
                         .contact("xx@qq.com")
                         .version("1.0")
                         .build())
@@ -28,8 +28,8 @@ public class Knife4jConfiguration {
                 .groupName("2.X版本")
                 .select()
                 //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.meng.login.controller"))
-                .paths(PathSelectors.regex("/login/.*"))
+                .apis(RequestHandlerSelectors.basePackage("org/easy/mallpositioning/controller"))
+                .paths(PathSelectors.regex("/mallpositioning/.*"))
                 .build();
         return docket;
     }
