@@ -5,8 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.easy.mallpositioning.entity.Users;
 import org.easy.mallpositioning.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -17,7 +16,8 @@ import org.springframework.stereotype.Controller;
  * @author meng
  * @since 2024-09-21
  */
-@Controller
+@CrossOrigin
+@RestController
 @Api("用户")
 @RequestMapping("/mallpositioning/users")
 public class UsersController {
@@ -26,9 +26,9 @@ public class UsersController {
     private IUsersService usersService;
     @ApiOperation("xxx")
     @GetMapping("/index")
-    public String index(){
+    public Users index(){
       Users users= usersService.getById(1);
-      return users.toString();
+      return users;
 
     }
 }
