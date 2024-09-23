@@ -21,7 +21,7 @@ public class GpsDataController {
     @PostMapping("/location")
     @ApiOperation("定位数据")
     public String location(@RequestBody String data) {
-        System.out.println("========="+data);
+
         return data;
     }
 
