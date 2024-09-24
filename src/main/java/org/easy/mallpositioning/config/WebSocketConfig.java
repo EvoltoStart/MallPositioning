@@ -1,5 +1,6 @@
 package org.easy.mallpositioning.config;
 
+import org.easy.mallpositioning.websocket.GpsWebSocketHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
