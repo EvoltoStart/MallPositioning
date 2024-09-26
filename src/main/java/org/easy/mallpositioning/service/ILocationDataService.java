@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ILocationDataService extends IService<LocationData> {
 
+    void saveLocationData(LocationData locationData);
 }

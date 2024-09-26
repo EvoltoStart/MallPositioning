@@ -13,43 +13,44 @@ import java.util.Map;
 public class GpsWebSocketHandler extends TextWebSocketHandler {
 
     // 存储每个监控端的WebSocket会话，使用监控端ID作为键
-    private final Map<String, WebSocketSession> monitorSessions = new HashMap<>();
+    private final Map<Long, WebSocketSession> clientSessions = new HashMap<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         // 获取监控端的唯一ID（假设通过URL参数传递）
-        String monitorId = getMonitorIdFromSession(session);
+        Long monitorId = getMonitorIdFromSession(session);
         if (monitorId != null) {
-            monitorSessions.put(monitorId, session);
+            clientSessions.put(monitorId, session);
         }
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        String monitorId = getMonitorIdFromSession(session);
+        Long monitorId = getMonitorIdFromSession(session);
         if (monitorId != null) {
-            monitorSessions.remove(monitorId);
+            clientSessions.remove(monitorId);
         }
     }
 
-    // 推送GPS数据到指定的监控端
-    public void sendGpsDataToMonitor(String monitorId, String gpsData) {
-        WebSocketSession session = monitorSessions.get(monitorId);
+    // 发送消息给指定的监控端
+    public void sendMessageToClient(Long monitorId, String message) {
+        WebSocketSession session = clientSessions.get(monitorId);
         if (session != null && session.isOpen()) {
             try {
-                session.sendMessage(new TextMessage(gpsData));
-            } catch (IOException e) {
+                session.sendMessage(new TextMessage(message));
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
     // 获取监控端的唯一ID
-    private String getMonitorIdFromSession(WebSocketSession session) {
+    private Long getMonitorIdFromSession(WebSocketSession session) {
         // 假设通过WebSocket连接URL中的query参数传递，如 ws://server/gps-websocket?monitorId=123
         String query = session.getUri().getQuery();
         if (query != null && query.contains("monitorId=")) {
-            return query.split("monitorId=")[1];
+            String monitorId= query.split("monitorId=")[1];
+            return Long.parseLong(monitorId);
         }
         return null;
     }

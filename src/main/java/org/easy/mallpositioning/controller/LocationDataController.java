@@ -1,11 +1,11 @@
 package org.easy.mallpositioning.controller;
 
+import org.easy.mallpositioning.entity.LocationData;
 import org.easy.mallpositioning.service.ILocationDataService;
+import org.easy.mallpositioning.websocket.GpsWebSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -16,13 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2024-09-26
  */
 @RestController
-@RequestMapping("/mallpositioning/locationData")
+@RequestMapping("/api")
 public class LocationDataController {
     @Autowired
     private ILocationDataService locationDataService;
+    @Autowired
+    private GpsWebSocketHandler gpsWebSocketHandler;
 
-    @GetMapping("gs")
-    public String gps() {
-        return "gps";
+
+    @PostMapping("/location")
+    public String receiveLocation(@RequestBody LocationData locationData) {
+        // 保存到数据库
+        //locationDataService.saveLocationData(locationData);
+
+        // 找到指定监控端并发送数据
+        String message = "Device " + locationData.getDeviceId() +
+                " is at [" + locationData.getLatitude() + ", " + locationData.getLongitude() + "]";
+        gpsWebSocketHandler.sendMessageToClient(locationData.getDeviceId(), message);
+
+        return "Location data received and sent to specific monitor.";
     }
+
 }

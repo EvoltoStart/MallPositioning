@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class LocationDataServiceImpl extends ServiceImpl<LocationDataMapper, LocationData> implements ILocationDataService {
 
+    @Override
+    public void saveLocationData(LocationData locationData){
+        this.save(locationData);
+    }
 }
