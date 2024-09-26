@@ -25,11 +25,11 @@ public class Knife4jConfiguration {
                         .version("1.0")
                         .build())
                 //分组名称
-                .groupName("2.X版本")
+                .groupName("GPS")
                 .select()
                 //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.meng.login.controller"))
-                .paths(PathSelectors.regex("/login/.*"))
+                .apis(RequestHandlerSelectors.basePackage("org.easy.mallpositioning.controller"))
+                .paths(PathSelectors.regex("/mallpositioning/.*"))
                 .build();
         return docket;
     }

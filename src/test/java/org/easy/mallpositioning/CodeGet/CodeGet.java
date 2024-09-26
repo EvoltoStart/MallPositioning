@@ -33,7 +33,7 @@ public class CodeGet {
                 .packageConfig(builder ->
                         builder.parent("org.easy") // 设置父包名
                                 .moduleName("mallpositioning") // 设置父包模块名
-                                .pathInfo(Collections.singletonMap(OutputFile.xml, "D:\\Program development\\Project\\MallPositioning\\src\\main\\java\\com\\esay\\mallpositioning\\mapper\\xml")) // 设置mapperXml生成路径
+                                .pathInfo(Collections.singletonMap(OutputFile.xml, "D:\\Program development\\Project\\MallPositioning\\src\\main\\java\\org\\easy\\mallpositioning\\mapper\\xml")) // 设置mapperXml生成路径
                 )
                 .strategyConfig(builder ->
                         builder.addInclude("users","devices","location_data",
