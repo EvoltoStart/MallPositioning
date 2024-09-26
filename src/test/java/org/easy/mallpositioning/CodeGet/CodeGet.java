@@ -14,7 +14,7 @@ import java.util.Collections;
 public class CodeGet {
 
     public static void main(String[] args) {
-        FastAutoGenerator.create("jdbc:mysql://localhost:3306/mallpositioning", "root", "root")
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/mallpositioning_1", "root", "root")
                 .globalConfig(builder -> {
                     builder.author("meng") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
@@ -36,9 +36,9 @@ public class CodeGet {
                                 .pathInfo(Collections.singletonMap(OutputFile.xml, "D:\\Program development\\Project\\MallPositioning\\src\\main\\java\\com\\esay\\mallpositioning\\mapper\\xml")) // 设置mapperXml生成路径
                 )
                 .strategyConfig(builder ->
-                        builder.addInclude("users","devices","device_status","alerts","location_records",
-                                        "gps_data","wifi_signals","tracking_history",
-                                        "admins","system_logs") // 设置需要生成的表名
+                        builder.addInclude("users","devices","location_data",
+                                        "monitor_tracked_mapping",
+                                        "path_data") // 设置需要生成的表名
                                 .addTablePrefix("t_", "c_") // 设置过滤表前缀
                 )
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
