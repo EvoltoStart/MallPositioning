@@ -1,5 +1,6 @@
 package org.easy.mallpositioning.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.easy.mallpositioning.entity.PathData;
 import org.easy.mallpositioning.mapper.PathDataMapper;
 import org.easy.mallpositioning.service.IPathDataService;
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class PathDataServiceImpl extends ServiceImpl<PathDataMapper, PathData> implements IPathDataService {
 
+    @Override
+    public PathData getPathData(Long userId) {
+        LambdaQueryWrapper<PathData> wrapper=new LambdaQueryWrapper<>();
+        wrapper.eq(PathData::getUserid,userId);
+        PathData pathData = baseMapper.selectOne(wrapper);
+        return pathData;
+    }
 }

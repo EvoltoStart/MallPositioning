@@ -6,6 +6,8 @@ import org.easy.mallpositioning.service.ILocationDataService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -21,4 +23,11 @@ public class LocationDataServiceImpl extends ServiceImpl<LocationDataMapper, Loc
     public void saveLocationData(LocationData locationData){
         this.save(locationData);
     }
+
+    @Override
+    public List<String> getAllDeviceId(Long id) {
+
+        return baseMapper.selectAllByDeviceIdList(id);
+    }
+
 }

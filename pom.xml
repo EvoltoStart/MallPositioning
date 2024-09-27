@@ -15,6 +15,19 @@
     </properties>
     <dependencies>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+
+        <!-- 在pom.xml中添加Jackson依赖 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+
         <!-- Spring Boot WebSocket Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

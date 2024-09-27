@@ -47,6 +47,7 @@ public class GpsWebSocketHandler extends TextWebSocketHandler {
     // 获取监控端的唯一ID
     private Long getMonitorIdFromSession(WebSocketSession session) {
         // 假设通过WebSocket连接URL中的query参数传递，如 ws://server/gps-websocket?monitorId=123
+        //websocket = new WebSocket("ws://localhost:8080/gps-websocket?monitorId=" + monitorId);
         String query = session.getUri().getQuery();
         if (query != null && query.contains("monitorId=")) {
             String monitorId= query.split("monitorId=")[1];

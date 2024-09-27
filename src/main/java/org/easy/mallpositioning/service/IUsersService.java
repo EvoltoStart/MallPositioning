@@ -1,5 +1,7 @@
 package org.easy.mallpositioning.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.easy.mallpositioning.Vo.UserVo;
 import org.easy.mallpositioning.entity.Users;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -15,5 +17,8 @@ import java.util.List;
  */
 public interface IUsersService extends IService<Users> {
 
-    public List<Users> getAllUsers();
+    List<Users> getAllUsers();
+
+    UserVo userLoginData(String username, String password) throws JsonProcessingException;
+
 }

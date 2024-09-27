@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IPathDataService extends IService<PathData> {
 
+    PathData getPathData(Long userId);
 }
